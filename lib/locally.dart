@@ -250,7 +250,7 @@ class Locally {
       );
 
       await localNotificationsPlugin.show(
-        0 + random.nextInt(9 - 0),
+        random.nextInt(1<<32),
         title,
         message,
         platformChannelSpecifics,
