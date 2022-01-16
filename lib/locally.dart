@@ -236,7 +236,7 @@ class Locally {
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
         channelID,
         channelName,
-        channelDescription,
+        channelDescription: channelDescription,
         importance: importance,
         priority: priority,
         ticker: ticker,
@@ -337,7 +337,7 @@ class Locally {
       throw "Missing parameters, title: message, repeat interval";
     } else {
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-          channelID, channelName, channelDescription);
+          channelID, channelName, channelDescription: channelDescription);
       var iOSPlatformChannelSpecifics = IOSNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           android: androidPlatformChannelSpecifics,
@@ -375,7 +375,7 @@ class Locally {
       throw "Missing parameters, title: message";
     } else {
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-          channelID, channelName, channelDescription);
+          channelID, channelName, channelDescription: channelDescription);
       var iOSPlatformChannelSpecifics = IOSNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           android: androidPlatformChannelSpecifics,
@@ -430,7 +430,7 @@ class Locally {
       throw "Missing parameters, title: message : time";
     } else {
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-          channelID, channelName, channelDescription);
+          channelID, channelName, channelDescription: channelDescription);
       var iOSPlatformChannelSpecifics = IOSNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           android: androidPlatformChannelSpecifics,
