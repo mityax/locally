@@ -85,7 +85,7 @@ class Locally {
 
     /// initializationSettingIos declared above is assigned
     /// to IOSInitializationSettings.
-    initializationSettingIos = new IOSInitializationSettings(
+    initializationSettingIos = new DarwinInitializationSettings(
         requestSoundPermission: iosRequestSoundPermission,
         requestBadgePermission: iosRequestBadgePermission,
         requestAlertPermission: iosRequestAlertPermission,
@@ -99,7 +99,9 @@ class Locally {
 
     /// localNotificationPlugin is initialized here finally
     localNotificationsPlugin.initialize(initializationSetting,
-        onSelectNotification: onSelectNotification);
+      onDidReceiveNotificationResponse: (resp) => onSelectNotification(resp.payload),
+      onDidReceiveBackgroundNotificationResponse: (resp) => onSelectNotification(resp.payload),
+    );
   }
 
   Future<void> setup() async {
@@ -181,6 +183,7 @@ class Locally {
   /// onSelectNotification
   /// Obtains a string payload
   /// And perform navigation function
+  @pragma('vm:entry-point')
   Future<dynamic> onSelectNotification(String? payload) async {
     if (payload != null) {
       debugPrint('notification payload: ' + payload);
@@ -242,7 +245,7 @@ class Locally {
         ticker: ticker,
       );
 
-      var iosPlatformChannelSpecifics = IOSNotificationDetails();
+      var iosPlatformChannelSpecifics = DarwinNotificationDetails();
 
       var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
@@ -338,7 +341,7 @@ class Locally {
     } else {
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
           channelID, channelName, channelDescription: channelDescription);
-      var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+      var iOSPlatformChannelSpecifics = DarwinNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           android: androidPlatformChannelSpecifics,
           iOS: iOSPlatformChannelSpecifics);
@@ -376,7 +379,7 @@ class Locally {
     } else {
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
           channelID, channelName, channelDescription: channelDescription);
-      var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+      var iOSPlatformChannelSpecifics = DarwinNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           android: androidPlatformChannelSpecifics,
           iOS: iOSPlatformChannelSpecifics);
@@ -431,7 +434,7 @@ class Locally {
     } else {
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
           channelID, channelName, channelDescription: channelDescription);
-      var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+      var iOSPlatformChannelSpecifics = DarwinNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           android: androidPlatformChannelSpecifics,
           iOS: iOSPlatformChannelSpecifics);
